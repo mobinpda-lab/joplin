@@ -205,4 +205,27 @@ describe('createEditor', () => {
 		const idFacet = editor.joplinExtensions.noteIdFacet;
 		expect(editorState.facet(idFacet)).toBe('Initial note ID');
 	});
+
+	it('should apply the selected editor font to CodeMirror content', async () => {
+		const editorSettings = createEditorSettings(Setting.THEME_LIGHT);
+		editorSettings.themeData.fontFamily = 'VazirHarf';
+
+		const editor = createEditor(document.body, {
+			initialText: 'این یک متن فارسی آزمایشی است.',
+			initialNoteId: '',
+			settings: editorSettings,
+			onEvent: _event => {},
+			onLogMessage: _message => {},
+			onLocalize: input => input,
+			onPasteFile: null,
+			resolveImageSrc: src => Promise.resolve(src),
+		});
+
+		const content = document.body.querySelector('.cm-content') as HTMLElement;
+		expect(content).not.toBeNull();
+		expect(getComputedStyle(content).fontFamily).toContain('VazirHarf');
+
+		editor.remove();
+	});
+
 });
