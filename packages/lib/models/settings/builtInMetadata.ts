@@ -542,6 +542,7 @@ const builtInMetadata = (Setting: typeof SettingType) => {
 				options[Setting.DATE_FORMAT_7] = time.formatMsToLocal(now, Setting.DATE_FORMAT_7);
 				options[Setting.DATE_FORMAT_8] = time.formatMsToLocal(now, Setting.DATE_FORMAT_8);
 				options[Setting.DATE_FORMAT_9] = time.formatMsToLocal(now, Setting.DATE_FORMAT_9);
+				options[Setting.DATE_FORMAT_10] = time.formatMsToLocal(now, Setting.DATE_FORMAT_10);
 				return options;
 			},
 			storage: SettingStorage.File,
