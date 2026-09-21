@@ -17,17 +17,19 @@ joplin.plugins.register({
       iconName: 'fas fa-font',
     });
 
-    await joplin.settings.registerSetting(EDITOR_FONT_SETTING, {
-      value: DEFAULT_EDITOR_FONT,
-      type: SETTING_STRING_TYPE,
-      section: 'joplinPersianShamsi',
-      isEnum: true,
-      public: true,
-      label: 'Editor font',
-      description: 'Font used by the Markdown editor. VazirHarf is bundled with this plugin.',
-      options: {
-        [DEFAULT_EDITOR_FONT]: 'Joplin default',
-        vazirharf: 'VazirHarf',
+    await joplin.settings.registerSettings({
+      [EDITOR_FONT_SETTING]: {
+        value: DEFAULT_EDITOR_FONT,
+        type: SETTING_STRING_TYPE,
+        section: 'joplinPersianShamsi',
+        isEnum: true,
+        public: true,
+        label: 'Editor font',
+        description: 'Font used by the Markdown editor. VazirHarf is bundled with this plugin.',
+        options: {
+          [DEFAULT_EDITOR_FONT]: 'Joplin default',
+          vazirharf: 'VazirHarf',
+        },
       },
     });
 
