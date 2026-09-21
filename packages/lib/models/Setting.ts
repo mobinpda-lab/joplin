@@ -251,6 +251,21 @@ class Setting extends BaseModel {
 	public static FONT_COURIER_NEW = 2;
 	public static FONT_AVENIR = 3;
 	public static FONT_MONOSPACE = 4;
+	public static FONT_VAZIRMATN = 5;
+	public static FONT_ESTEDAD = 6;
+	public static FONT_SAHEL = 7;
+	public static FONT_SHABNAM = 8;
+	public static FONT_SAMIM = 9;
+	public static FONT_TANHA = 10;
+	public static FONT_GANDOM = 11;
+	public static FONT_PARASTOO = 12;
+	public static FONT_MIKHAK = 13;
+	public static FONT_LALEZAR = 14;
+	public static FONT_VAZIR_CODE = 15;
+	public static FONT_NOTO_SANS_ARABIC = 16;
+	public static FONT_NOTO_KUFI_ARABIC = 17;
+	public static FONT_IBM_PLEX_SANS_ARABIC = 18;
+	public static FONT_VAZIRHARF = 19;
 
 	public static LAYOUT_ALL = 0;
 	public static LAYOUT_EDITOR_VIEWER = 1;
