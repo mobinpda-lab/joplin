@@ -281,6 +281,7 @@ class Setting extends BaseModel {
 	public static DATE_FORMAT_7 = 'YYYY.MM.DD';
 	public static DATE_FORMAT_8 = 'YYMMDD';
 	public static DATE_FORMAT_9 = 'YYYY/MM/DD';
+	public static DATE_FORMAT_10 = 'JALALI';
 
 	public static TIME_FORMAT_1 = 'HH:mm';
 	public static TIME_FORMAT_2 = 'h:mm A';
