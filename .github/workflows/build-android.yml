@@ -2,11 +2,13 @@
 # tell us automatically if something got broken when a dependency was changed.
 
 name: react-native-android-build-apk
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
 
 jobs:
   AssembleRelease:
-    if: github.repository == 'laurent22/joplin'
     runs-on: ubuntu-latest
     steps:
       - name: Install Linux dependencies
@@ -44,6 +46,9 @@ jobs:
 
       - uses: ./.github/workflows/shared/install-yarn
 
+      - name: Prepare pinned Persian font assets
+        run: bash packages/app-mobile/prepare-persian-fonts.sh
+
       - name: Install
         run: |
           source "${GITHUB_WORKSPACE}/.github/scripts/retry.sh"
@@ -56,7 +61,7 @@ jobs:
           cd packages/app-mobile/android
           sed -i -- 's/signingConfig signingConfigs.release/signingConfig signingConfigs.debug/' app/build.gradle
           ./gradlew assembleRelease
-      
+
       - name: Verify alignment
         run: |
           cd packages/app-mobile/android/app
@@ -73,12 +78,16 @@ jobs:
             echo "Build tools not found at $BUILD_TOOLS_PATH ($ANDROID_HOME, $BUILD_TOOLS_VERSION)"
             exit 1
           fi
-          # The build-tools/ directory contains different subdirectories
-          # for each build tools version. As a result, there may be multiple
-          # zipalign tools. Select the most recent (biggest two-digit version number):
           ZIPALIGN_PATH="$(find $BUILD_TOOLS_PATH -name "zipalign" -print | sort | tail -n1)"
           if test ! -x "$ZIPALIGN_PATH" ; then
             echo "zipalign not found (searching in $BUILD_TOOLS_PATH, candidate: $ZIPALIGN_PATH)"
             exit 1
           fi
           "$ZIPALIGN_PATH" -c -P 16 -v 4 "$APK_FILE"
+
+      - name: Upload Android APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: joplin-android-persian-jalali
+          path: packages/app-mobile/android/app/build/outputs/apk/release/app-release.apk
+          if-no-files-found: error
