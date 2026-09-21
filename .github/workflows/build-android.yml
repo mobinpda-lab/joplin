@@ -6,7 +6,6 @@ on: [push, pull_request]
 
 jobs:
   AssembleRelease:
-    if: github.repository == 'laurent22/joplin'
     runs-on: ubuntu-latest
     steps:
       - name: Install Linux dependencies
@@ -43,6 +42,9 @@ jobs:
           cache: 'yarn'
 
       - uses: ./.github/workflows/shared/install-yarn
+
+      - name: Prepare pinned Persian font assets
+        run: bash packages/app-mobile/prepare-persian-fonts.sh
 
       - name: Install
         run: |
@@ -82,3 +84,10 @@ jobs:
             exit 1
           fi
           "$ZIPALIGN_PATH" -c -P 16 -v 4 "$APK_FILE"
+
+      - name: Upload Android APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: joplin-android-persian-jalali
+          path: packages/app-mobile/android/app/build/outputs/apk/release/app-release.apk
+          if-no-files-found: error
