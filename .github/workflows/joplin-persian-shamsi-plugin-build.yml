@@ -29,6 +29,7 @@ jobs:
       - run: npm run dist
       - name: Verify JPL archive
         run: |
+          set -euo pipefail
           archive="$(find publish -maxdepth 1 -name '*.jpl' -print -quit)"
           test -n "$archive"
           tar -tf "$archive" | grep -Fx 'manifest.json'
@@ -39,7 +40,12 @@ jobs:
           tar -tf "$archive" | grep -Fx 'editor.css'
           tar -tf "$archive" | grep -Fx 'fonts/Vazirharf[wght].ttf'
           tar -xOf "$archive" manifest.json | grep -F 'org.mobinpda.joplin.persianshamsi'
-          tar -xOf "$archive" manifest.json | grep -Eq '"version"[[:space:]]*:[[:space:]]*"0\.1\.1"'
+          tar -xOf "$archive" manifest.json | grep -Eq '"version"[[:space:]]*:[[:space:]]*"0\.1\.2"'
+          tar -xOf "$archive" index.js | grep -F 'registerSettings'
+          if tar -xOf "$archive" index.js | grep -F 'registerSetting('; then
+            echo 'ERROR: deprecated registerSetting() remains in compiled plugin'
+            exit 1
+          fi
       - name: Upload JPL artifact
         uses: actions/upload-artifact@v4
         with:
