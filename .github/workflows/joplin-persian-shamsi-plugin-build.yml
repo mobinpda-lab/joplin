@@ -33,10 +33,13 @@ jobs:
           test -n "$archive"
           tar -tf "$archive" | grep -Fx 'manifest.json'
           tar -tf "$archive" | grep -Fx 'index.js'
+          tar -tf "$archive" | grep -Fx 'editorPlugin.js'
           tar -tf "$archive" | grep -Fx 'markdownItPlugin.js'
           tar -tf "$archive" | grep -Fx 'style.css'
+          tar -tf "$archive" | grep -Fx 'editor.css'
           tar -tf "$archive" | grep -Fx 'fonts/Vazirharf[wght].ttf'
           tar -xOf "$archive" manifest.json | grep -F 'org.mobinpda.joplin.persianshamsi'
+          tar -xOf "$archive" manifest.json | grep -F '"version":"0.1.1"'
       - name: Upload JPL artifact
         uses: actions/upload-artifact@v4
         with:
