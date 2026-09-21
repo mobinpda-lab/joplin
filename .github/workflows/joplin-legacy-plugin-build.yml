@@ -3,13 +3,13 @@ name: Joplin isolated plugin build
 on:
   push:
     branches:
-      - research/joplin-persian-shamsi-isolated
+      - research/legacy-persian-shamsi-plugin
     paths:
-      - 'research/joplin-persian-shamsi-isolated/plugin/**'
+      - 'research/legacy-persian-shamsi-plugin/plugin/**'
       - '.github/workflows/joplin-isolated-build.yml'
   pull_request:
     paths:
-      - 'research/joplin-persian-shamsi-isolated/plugin/**'
+      - 'research/legacy-persian-shamsi-plugin/plugin/**'
       - '.github/workflows/joplin-isolated-build.yml'
   workflow_dispatch:
 
@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: research/joplin-persian-shamsi-isolated/plugin
+        working-directory: research/legacy-persian-shamsi-plugin/plugin
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -31,7 +31,7 @@ jobs:
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: research/joplin-persian-shamsi-isolated/plugin/package.json
+          cache-dependency-path: research/legacy-persian-shamsi-plugin/plugin/package.json
 
       - name: Install dependencies
         run: npm install
@@ -57,6 +57,6 @@ jobs:
         with:
           name: joplin-persian-shamsi-plugin
           path: |
-            research/joplin-persian-shamsi-isolated/plugin/publish/*.jpl
-            research/joplin-persian-shamsi-isolated/plugin/publish/*.json
+            research/legacy-persian-shamsi-plugin/plugin/publish/*.jpl
+            research/legacy-persian-shamsi-plugin/plugin/publish/*.json
           if-no-files-found: error
