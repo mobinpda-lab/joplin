@@ -6,11 +6,12 @@ on:
   push:
     paths:
       - 'research/legacy-persian-shamsi-plugin/plugin/**'
-      - '.github/workflows/joplin-persian-shamsi-build.yml'
+      - '.github/workflows/joplin-persian-shamsi-plugin-build.yml'
   pull_request:
     paths:
       - 'research/legacy-persian-shamsi-plugin/plugin/**'
-      - '.github/workflows/joplin-persian-shamsi-build.yml'
+      - '.github/workflows/joplin-persian-shamsi-plugin-build.yml'
+  workflow_dispatch:
 
 jobs:
   build:
