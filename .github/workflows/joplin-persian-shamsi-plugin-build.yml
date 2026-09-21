@@ -5,11 +5,11 @@ name: Joplin Persian Shamsi Plugin
 on:
   push:
     paths:
-      - 'research/joplin-persian-shamsi-isolated/plugin/**'
+      - 'research/legacy-persian-shamsi-plugin/plugin/**'
       - '.github/workflows/joplin-persian-shamsi-build.yml'
   pull_request:
     paths:
-      - 'research/joplin-persian-shamsi-isolated/plugin/**'
+      - 'research/legacy-persian-shamsi-plugin/plugin/**'
       - '.github/workflows/joplin-persian-shamsi-build.yml'
 
 jobs:
@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: research/joplin-persian-shamsi-isolated/plugin
+        working-directory: research/legacy-persian-shamsi-plugin/plugin
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -39,5 +39,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: joplin-persian-shamsi-jpl
-          path: research/joplin-persian-shamsi-isolated/plugin/publish/*.jpl
+          path: research/legacy-persian-shamsi-plugin/plugin/publish/*.jpl
           if-no-files-found: error
