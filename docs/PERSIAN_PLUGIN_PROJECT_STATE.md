@@ -8,27 +8,41 @@
 - PR اصلی: #1
 - نسخه مبنا: Joplin v3.7.18
 - هدف فعلی: **پلاگین مستقل فارسی Joplin**؛ فعلاً تغییر هسته Joplin و ساخت APK سفارشی متوقف است.
-- آخرین Commit مرجع این پرونده: `9323eb89bff463abb25a06f8d355d3172f7bd211`
+- آخرین Commit مرجع: `5ee53afd950a76dcbf9469ff18bf0be77d3eed10`
 
-## نتیجه اثبات‌شده
-اولین فایل واقعی `.jpl` ساخته و از GitHub Actions به‌صورت Artifact دریافت شده است.
-- Workflow Run: `35647067423`
+## آخرین نتیجه ساخت واقعی
+آخرین اجرای مستقل ساخت پلاگین با موفقیت کامل شد:
+- Workflow Run: `35650302609`
+- نتیجه: **success**
 - Artifact: `joplin-persian-shamsi-jpl`
-- بسته: `org.mobinpda.joplin.persianshamsi.jpl`
-- محتوای بررسی‌شده شامل:
-  - `manifest.json`
-  - `index.js`
-  - `editorPlugin.js`
-  - `markdownItPlugin.js`
-  - `style.css`
-  - `editor.css`
-  - `fonts/Vazirharf[wght].ttf`
+- Artifact ID: `10662021497`
+- حجم Artifact: 149042 bytes
+- SHA-256 Artifact ZIP: `8708c2cda60d90debf4f708a74e02ce8aed05ca3a73c7c6a72c51b8b575e1f3a`
+- تاریخ ایجاد: 2026-09-21T20:19:41Z
 
-## نکته نسخه
-Artifact ساخته‌شده، نسخه Manifest برابر `0.1.0` دارد؛ در حالی که `package.json` در Commit بعدی به `0.1.1` تغییر داده شده بود. قبل از نسخه انتشار نهایی باید این دو یکسان شوند.
+Workflow در مرحله «Verify JPL archive» موارد زیر را واقعاً با موفقیت بررسی کرده است:
+- `manifest.json`
+- `index.js`
+- `editorPlugin.js`
+- `markdownItPlugin.js`
+- `style.css`
+- `editor.css`
+- `fonts/Vazirharf[wght].ttf`
+- شناسه `org.mobinpda.joplin.persianshamsi`
+- نسخه Manifest برابر `0.1.1`
+
+## مشکل CI که رفع شد
+دو اجرای قبلی به‌علت خطای بررسی متن Manifest شکست خوردند؛ خود ساخت `.jpl` موفق بود.
+مشکل از این خط بود که فقط قالب دقیق `"version":"0.1.1"` را قبول می‌کرد، در حالی که Manifest دارای فاصله‌های قالب‌بندی JSON بود.
+این بررسی به عبارت فاصله‌پذیر اصلاح شد و اجرای بعدی موفق شد.
+
+## وضعیت نسخه
+- `package.json`: **0.1.1**
+- `manifest.json`: **0.1.1**
+- ناسازگاری نسخه قبلی رفع شده است.
 
 ## هنوز اثبات نشده
-- نصب واقعی `.jpl` روی Joplin
+- نصب واقعی Artifact روی Joplin
 - فعال‌شدن پلاگین روی Android
 - اعمال واقعی VazirHarf در Editor/CodeMirror در Android
 - نمایش واقعی تاریخ جلالی روی Android
@@ -36,15 +50,17 @@ Artifact ساخته‌شده، نسخه Manifest برابر `0.1.0` دارد؛ �
 - انتشار نهایی
 
 ## گام بعدی قطعی
-از همین Artifact واقعی استفاده شود:
-1. نصب پلاگین
-2. فعال‌سازی
-3. بازکردن Note
-4. ورود به Edit
-5. بررسی VazirHarf
-6. بررسی تاریخ جلالی
-7. بررسی عدم تغییر داده و timestamp داخلی
-8. بررسی Sync
+از Artifact جدید Run `35650302609` ادامه داده شود:
+1. دریافت فایل `.jpl`
+2. نصب روی محیط آزمایشی Joplin
+3. فعال‌سازی پلاگین
+4. بازکردن Note
+5. ورود واقعی به Edit
+6. بررسی VazirHarf در Editor/CodeMirror
+7. بررسی تاریخ جلالی
+8. بررسی عدم تغییر timestamp و داده داخلی
+9. بررسی Sync
+10. ثبت نتیجه واقعی در همین فایل
 
 ## قوانین جلوگیری از دوباره‌کاری
 - قبل از هر تغییر، این فایل + آخرین Commit + PR #1 + آخرین Workflow Run بررسی شود.
@@ -52,7 +68,7 @@ Artifact ساخته‌شده، نسخه Manifest برابر `0.1.0` دارد؛ �
 - بدون شواهد واقعی، Build/Install/Android/Sync موفق اعلام نشود.
 - «حل شد» فقط بعد از آزمایش واقعی قابل استفاده است.
 - تغییر هسته Joplin فقط در صورت شکست واقعی مسیر Plugin بررسی شود.
-- هر نتیجه مهم در همین فایل یا یک فایل وضعیت جدید با لینک به آن ثبت شود.
+- هر نتیجه مهم در همین فایل ثبت شود.
 
 ## دستور برای گفتگوی بعدی
 «فایل `docs/PERSIAN_PLUGIN_PROJECT_STATE.md` را بخوان؛ از آخرین Commit و آخرین Workflow Run ادامه بده و پروژه را از صفر بررسی نکن. ابتدا وضعیت گام بعدی را تعیین و سپس اجرا کن.»
