@@ -2,7 +2,7 @@
   "manifest_version": 1,
   "id": "org.mobinpda.joplin.persianshamsi",
   "app_min_version": "3.7",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "name": "Joplin Persian Shamsi",
   "description": "Independent Persian RTL and Jalali support for Joplin. Does not modify note data.",
   "author": "mobinpda-lab",
