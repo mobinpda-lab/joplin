@@ -1,7 +1,7 @@
 {
   "name": "joplin-plugin-persian-shamsi",
   "version": "0.1.1",
-  "description": "Independent Joplin plugin for Persian RTL rendering and Jalali date support. CI build gate enabled.",
+  "description": "Independent Joplin plugin for Persian RTL rendering and Jalali date support. Settings API migrated to the supported registerSettings() API.",
   "scripts": {
     "dist": "webpack --env joplin-plugin-config=buildMain && webpack --env joplin-plugin-config=buildExtraScripts && webpack --env joplin-plugin-config=createArchive",
     "prepare": "npm run dist",
@@ -19,7 +19,7 @@
     "chalk": "^4.1.0",
     "copy-webpack-plugin": "^11.0.0",
     "fs-extra": "^10.1.0",
-    "glob": "^8.0.3",
+    "glob": "^8.0.0",
     "tar": "^6.1.11",
     "ts-loader": "^9.3.1",
     "typescript": "^4.8.2",
