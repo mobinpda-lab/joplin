@@ -39,7 +39,7 @@ jobs:
           tar -tf "$archive" | grep -Fx 'editor.css'
           tar -tf "$archive" | grep -Fx 'fonts/Vazirharf[wght].ttf'
           tar -xOf "$archive" manifest.json | grep -F 'org.mobinpda.joplin.persianshamsi'
-          tar -xOf "$archive" manifest.json | grep -F '"version":"0.1.1"'
+          tar -xOf "$archive" manifest.json | grep -Eq '"version"[[:space:]]*:[[:space:]]*"0\.1\.1"'
       - name: Upload JPL artifact
         uses: actions/upload-artifact@v4
         with:
