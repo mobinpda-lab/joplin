@@ -147,8 +147,6 @@ const dateTimeFormat = () => {
 };
 
 
-const jalaliMonthDays = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29];
-
 const isGregorianLeap = (year: number) => year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
 
 const toJalali = (date: Date) => {
