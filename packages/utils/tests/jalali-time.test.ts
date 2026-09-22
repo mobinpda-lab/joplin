@@ -1,4 +1,4 @@
-import { formatMsToLocal } from '../src/time';
+import { formatMsToLocal } from '../time';
 
 describe('Jalali date formatting', () => {
 	test('converts a known Gregorian date to Jalali', () => {
